@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +9,11 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /*
  * CompoundCalculator.java
@@ -26,6 +31,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 	public static String output;
 	public static int result;
 	public static int action = 0;
+	String x = "";
+	String y = "";
+	String z = "";
 
 	/** Creates new form CompoundCalculator */
 	public CompoundCalculator() {
@@ -40,7 +48,19 @@ public class CompoundCalculator extends javax.swing.JFrame {
 	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
+		
 
+		//将背景图绘在JFrame的倒数第二底层的Layeredpane上
+		  JLabel   picLabel   =   new   JLabel(); 
+		  picLabel.setIcon(new   ImageIcon( "under.jpg")); 
+		  this.getLayeredPane().add(picLabel, new Integer(Integer.MIN_VALUE));
+		  picLabel.setBounds(0,0,1000,705);
+		 
+		//再在JFrame的最上层contentpane上添加按钮并且设置contentpane为透明。
+		  JPanel content = new JPanel();
+		  content=(JPanel)getContentPane();  
+		  content.setOpaque(false);
+		//  content.add(monthOrWeekPlanBtn);
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
 		jButton3 = new javax.swing.JButton();
@@ -63,8 +83,10 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTextArea1 = new javax.swing.JTextArea();
 		jButton9 = new javax.swing.JButton();
+		jButton11 = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setBackground(new java.awt.Color(255, 255, 255));
 
 		jButton1.setText("\u590d\u5229");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,14 +123,19 @@ public class CompoundCalculator extends javax.swing.JFrame {
 			}
 		});
 
+		jLabel1.setForeground(new java.awt.Color(51, 255, 0));
 		jLabel1.setText("\u672c\u91d1\uff1a");
 
+		jLabel2.setForeground(new java.awt.Color(51, 255, 0));
 		jLabel2.setText("\u5e74\u5229\u7387\uff08%\uff09\uff1a");
 
+		jLabel3.setForeground(new java.awt.Color(51, 255, 0));
 		jLabel3.setText("\u5b58\u5165\u5e74\u9650\uff1a");
 
+		jLabel4.setForeground(new java.awt.Color(51, 255, 0));
 		jLabel4.setText("\u5e74\u590d\u5229\u6b21\u6570\uff1a");
 
+		jLabel5.setForeground(new java.awt.Color(51, 255, 0));
 		jLabel5.setText("\u590d\u5229\u7ec8\u503c\uff1a");
 
 		jButton6.setText("\u5b9a\u671f\u6295\u8d44");
@@ -148,6 +175,13 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jButton9.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton9ActionPerformed(evt);
+			}
+		});
+
+		jButton11.setText("\u9884\u586b\u6570\u636e");
+		jButton11.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton11ActionPerformed(evt);
 			}
 		});
 
@@ -258,28 +292,42 @@ public class CompoundCalculator extends javax.swing.JFrame {
 																														Short.MAX_VALUE)))))
 												.addComponent(jLabel5)
 												.addGroup(
+														javax.swing.GroupLayout.Alignment.TRAILING,
 														layout.createSequentialGroup()
-																.addComponent(
-																		jButton8,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		112,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(17, 17,
-																		17)
-																.addComponent(
-																		jButton10,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		110,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(18, 18,
-																		18)
-																.addComponent(
-																		jButton9))
-												.addComponent(
-														jScrollPane1,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														376,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.TRAILING)
+																				.addComponent(
+																						jScrollPane1,
+																						javax.swing.GroupLayout.Alignment.LEADING,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						383,
+																						Short.MAX_VALUE)
+																				.addGroup(
+																						layout.createSequentialGroup()
+																								.addComponent(
+																										jButton8,
+																										javax.swing.GroupLayout.DEFAULT_SIZE,
+																										89,
+																										Short.MAX_VALUE)
+																								.addGap(1,
+																										1,
+																										1)
+																								.addComponent(
+																										jButton10,
+																										javax.swing.GroupLayout.PREFERRED_SIZE,
+																										93,
+																										javax.swing.GroupLayout.PREFERRED_SIZE)
+																								.addPreferredGap(
+																										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																								.addComponent(
+																										jButton9)
+																								.addPreferredGap(
+																										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																								.addComponent(
+																										jButton11)))
+																.addGap(31, 31,
+																		31)))
 								.addContainerGap()));
 		layout.setVerticalGroup(layout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,12 +423,13 @@ public class CompoundCalculator extends javax.swing.JFrame {
 														javax.swing.GroupLayout.PREFERRED_SIZE,
 														25,
 														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(jButton9)
 												.addComponent(
 														jButton10,
 														javax.swing.GroupLayout.PREFERRED_SIZE,
 														25,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(jButton9)
+												.addComponent(jButton11))
 								.addPreferredGap(
 										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(jScrollPane1,
@@ -393,27 +442,64 @@ public class CompoundCalculator extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
+	private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {
+		// 预填数据
+		Object[] obj2 = { "本金", "利率", "年限" };
+		String s = (String) JOptionPane.showInputDialog(null, "请选择你需要预填的数据:\n",
+				"预填", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"),
+				obj2, "利率");
+		if (s == "本金") {
+			if (action == 0 || action == 1 || action == 2 || action == 4
+					|| action == 5 || action == 6 || action == 7 || action == 8) {
+				x = (String) JOptionPane.showInputDialog(null, "请输入预填的本金：\n",
+						"预填值", JOptionPane.PLAIN_MESSAGE, null, null, "在这输入");
+				jTextField1.setText("" + x);
+			}
+		}
+		if (s == "利率") {
+			if (action == 0 || action == 1 || action == 2 || action == 3
+					|| action == 4 || action == 6 || action == 7 || action == 8) {
+				y = (String) JOptionPane.showInputDialog(null, "请输入预填的利率：\n",
+						"预填值", JOptionPane.PLAIN_MESSAGE, null, null, "在这输入");
+				jTextField2.setText("" + y);
+			}
+		}
+		if (s == "年限") {
+			if (action == 0 || action == 1 || action == 2 || action == 3
+					|| action == 4 || action == 6 || action == 7 || action == 8) {
+				z = (String) JOptionPane.showInputDialog(null, "请输入预填的年限：\n",
+						"预填值", JOptionPane.PLAIN_MESSAGE, null, null, "在这输入");
+				jTextField3.setText("" + z);
+			}
+			if (action == 5) {
+				z = (String) JOptionPane.showInputDialog(null, "请输入预填的年限：\n",
+						"预填值", JOptionPane.PLAIN_MESSAGE, null, null, "在这输入");
+				jTextField2.setText("" + z);
+			}
+		}
+	}
+
 	private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
 		// 查看历史记录
-		String url = "F:/abc.txt"; 
-		try { 
-		FileReader read = new FileReader(new File(url)); 
-		StringBuffer sb = new StringBuffer(); 
-		char ch[] = new char[1024]; 
-		int d = read.read(ch); 
-		while(d!=-1){ 
-		String str = new String(ch,0,d); 
-		sb.append(str); 
-		d = read.read(ch); 
-		} 
-		jTextArea1.setText(sb.toString());
-		System.out.print(sb.toString()); 
-		} catch (FileNotFoundException e) { 
-		e.printStackTrace(); 
-		} catch (IOException e) { 
-		e.printStackTrace(); 
+		String url = "F:/abc.txt";
+		try {
+			FileReader read = new FileReader(new File(url));
+			StringBuffer sb = new StringBuffer();
+			char ch[] = new char[1024];
+			int d = read.read(ch);
+			while (d != -1) {
+				String str = new String(ch, 0, d);
+				sb.append(str);
+				d = read.read(ch);
+			}
+			jTextArea1.setText(sb.toString());
+			System.out.print(sb.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
+
 	}
 
 	private void jButton10ActionPerformed(ActionEvent evt) {
@@ -724,9 +810,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jLabel3.setText("年限：");
 		jLabel4.setText("年复利次数：");
 		jLabel5.setText("等额本息还款额：");
-		jTextField1.setText(null);
-		jTextField2.setText(null);
-		jTextField3.setText(null);
+		jTextField1.setText("" + x);
+		jTextField2.setText("" + y);
+		jTextField3.setText("" + z);
 		jTextField4.setText(null);
 		jTextField4.show();
 		jLabel6.setText(null);
@@ -747,9 +833,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 			jLabel3.setText("定投年数：");
 			jLabel4.setText(null);
 			jLabel5.setText("终值：");
-			jTextField1.setText(null);
-			jTextField2.setText(null);
-			jTextField3.setText(null);
+			jTextField1.setText("" + x);
+			jTextField2.setText("" + y);
+			jTextField3.setText("" + z);
 			jTextField4.setText(null);
 			jTextField4.hide();
 			jLabel6.setText(null);
@@ -761,9 +847,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 			jLabel3.setText("定投月数：");
 			jLabel4.setText(null);
 			jLabel5.setText("终值：");
-			jTextField1.setText(null);
-			jTextField2.setText(null);
-			jTextField3.setText(null);
+			jTextField1.setText("" + x);
+			jTextField2.setText("" + y);
+			jTextField3.setText("" + z);
 			jTextField4.setText(null);
 			jTextField4.hide();
 			jLabel6.setText(null);
@@ -779,8 +865,8 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jLabel3.setText("年复利次数：");
 		jLabel4.setText("复利终值：");
 		jLabel5.setText("年限：");
-		jTextField1.setText(null);
-		jTextField2.setText(null);
+		jTextField1.setText("" + x);
+		jTextField2.setText("" + y);
 		jTextField3.setText(null);
 		jTextField4.setText(null);
 		jTextField4.show();
@@ -797,8 +883,8 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jLabel4.setText("年复利次数：");
 		jLabel5.setText("本金：");
 		jTextField1.setText(null);
-		jTextField2.setText(null);
-		jTextField3.setText(null);
+		jTextField2.setText("" + y);
+		jTextField3.setText("" + z);
 		jTextField4.setText(null);
 		jTextField4.show();
 		jLabel6.setText(null);
@@ -814,9 +900,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jLabel3.setText("存入年限：");
 		jLabel4.setText(null);
 		jLabel5.setText("终值：");
-		jTextField1.setText(null);
-		jTextField2.setText(null);
-		jTextField3.setText(null);
+		jTextField1.setText("" + x);
+		jTextField2.setText("" + y);
+		jTextField3.setText("" + z);
 		jTextField4.setText(null);
 		jTextField4.hide();
 		jLabel6.setText(null);
@@ -832,8 +918,8 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jLabel3.setText("年复利次数：");
 		jLabel4.setText("复利终值：");
 		jLabel5.setText("年利率（%）：");
-		jTextField1.setText(null);
-		jTextField2.setText(null);
+		jTextField1.setText("" + x);
+		jTextField2.setText("" + z);
 		jTextField3.setText(null);
 		jTextField4.setText(null);
 		jTextField4.show();
@@ -849,9 +935,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 		jLabel3.setText("存入年限：");
 		jLabel4.setText("年复利次数：");
 		jLabel5.setText("复利终值：");
-		jTextField1.setText(null);
-		jTextField2.setText(null);
-		jTextField3.setText(null);
+		jTextField1.setText("" + x);
+		jTextField2.setText("" + y);
+		jTextField3.setText("" + z);
 		jTextField4.setText(null);
 		jTextField4.show();
 		jLabel6.setText(null);
@@ -864,8 +950,9 @@ public class CompoundCalculator extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
+
 		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run() { // 窗体大小
 				new CompoundCalculator().setVisible(true);
 			}
 		});
@@ -875,6 +962,7 @@ public class CompoundCalculator extends javax.swing.JFrame {
 	// Variables declaration - do not modify
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton10;
+	private javax.swing.JButton jButton11;
 	private javax.swing.JButton jButton2;
 	private javax.swing.JButton jButton3;
 	private javax.swing.JButton jButton4;
@@ -890,7 +978,7 @@ public class CompoundCalculator extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel5;
 	private javax.swing.JLabel jLabel6;
 	private javax.swing.JScrollPane jScrollPane1;
-	javax.swing.JTextArea jTextArea1;
+	private javax.swing.JTextArea jTextArea1;
 	private javax.swing.JTextField jTextField1;
 	private javax.swing.JTextField jTextField2;
 	private javax.swing.JTextField jTextField3;

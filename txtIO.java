@@ -37,7 +37,6 @@ String str = new String(ch,0,d);
 sb.append(str); 
 d = read.read(ch); 
 } 
-C.jTextArea1.setText(sb.toString());
 System.out.print(sb.toString()); 
 } catch (FileNotFoundException e) { 
 e.printStackTrace(); 
